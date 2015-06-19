@@ -1,0 +1,39 @@
+public static int majorityElement(int[] num) {
+        if (num.length == 1) {
+            return num[0];
+        }
+
+        Arrays.sort(num);
+        int previousNum = num[0];
+        int count = 1;
+        for (int i = 1; i < num.length; i++) {
+            if (num[i] == previousNum) {
+                count++;
+                if (count > num.length / 2) {
+                    return num[i];
+                }
+            } else {
+                previousNum = num[i];
+                count = 1;
+            }
+
+        }
+        return previousNum;
+    }
+    
+    
+public int majorityElement(int[] num) { // the second solution, much simpler
+/*
+Since the majority always take more than a half space, 
+the middle element is guaranteed to be the majority. 
+Sorting array takes nlog(n). 
+So the time complexity of this solution is nlog(n). 
+Cheers!
+*/
+	if (num.length == 1) {
+		return num[0];
+	}
+ 
+	Arrays.sort(num);
+	return num[num.length / 2];
+}
