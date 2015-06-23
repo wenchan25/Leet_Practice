@@ -1,0 +1,21 @@
+public class Solution {
+    public static String longestCommonPrefix(String[] strs) {
+        if (strs == null || strs.length == 0) {
+            return "";
+        }
+        String prefix = strs[0]; // set the prefix to be the first element
+        for (int i = 1; i < strs.length; i++) { // compare with next element
+            int j = 0;
+            while (j < strs[i].length() && // j is less than the length of next element
+                    j < prefix.length() && // j is less than the length of prefix element
+                    strs[i].charAt(j) == prefix.charAt(j)) { // to confirm the prefix are the same
+                j++;
+            }
+            if (j == 0) { // if they don't match
+                return "";
+            }
+            prefix = prefix.substring(0, j);
+        }
+        return prefix;
+    }
+}
