@@ -1,0 +1,31 @@
+public class Solution {
+    public int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
+        int area1 = (A-C)*(B-D);
+        int area2 = (E-G)*(F-H);
+        int total = area1 + area2;
+        
+        int x1 = Math.max(E, A);
+        int y1 = Math.max(F, B);
+        int x2 = Math.min(C, G);
+        int y2 = Math.min(H, D);
+        int areaOverLap;
+        
+        if (x2<x1 || y2<y1){
+            areaOverLap = 0;
+        } else {
+            areaOverLap = (x2-x1) * (y2-y1);
+        }
+        
+        return total - areaOverLap;
+        
+    }
+}
+
+/*
+分别给定两个矩形的左下角坐标和右上角的坐标，求出两个矩形所占的面积。
+
+分别计算出两个矩形的面积s1和s2
+两个矩形之和为s，由于两个矩形可能有重叠区域，所以s可能包含了重复的面积
+找到两个矩形重复区域的长和宽
+如果有重复区域，那么就用s减去重复面积
+*/
