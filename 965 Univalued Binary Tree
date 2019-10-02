@@ -1,0 +1,48 @@
+/* Queue, preferred */
+public boolean isUnivalTree(TreeNode root) {
+    Queue<TreeNode> q = new LinkedList<>();
+    int standard = root.val;
+
+    q.offer(root);
+
+    while (!q.isEmpty()) {
+        TreeNode n = q.poll();
+        if (n.val != standard) return false;
+        if (n.left != null) q.offer(n.left);
+        if (n.right != null) q.offer(n.right);
+    }
+    return q.isEmpty();
+  }
+}
+
+/* Recursion, also preferred */
+
+public boolean isUnivalTree(TreeNode root) {
+    if (root == null) return true;
+    return helper(root, root.val);
+}
+    
+private boolean helper (TreeNode root, int val) {
+    if (root == null) return true;
+        
+    if (root.val != val) return false;
+        return helper(root.left, val) && helper(root.right, val);
+}
+
+/* Recusion 2, using a list */
+public boolean isUnivalTree(TreeNode root) {
+    list = new ArrayList<>();
+    dfs(root);   
+    for(int i : list) {
+        if (i != list.get(0)) return false;
+    }
+    return true;
+}
+    
+private void dfs(TreeNode root) {
+    if(root != null) {
+        list.add(root.val);
+        dfs(root.left);
+        dfs(root.right);
+    }
+}
