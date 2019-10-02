@@ -1,0 +1,46 @@
+/* 2 Sets */
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> set = new HashSet<>();
+        Set<Integer> result = new HashSet<>();
+        
+        for (int n1 : nums1) set.add(n1);
+        for (int n2 : nums2) {
+            if (set.contains(n2)) result.add(n2);
+        }
+        
+        int[] res = new int[result.size()];
+        int k = 0;
+        for (int r : result) res[k++] = r;
+        return res;
+    }
+}
+
+
+/* 2 pointers on sorted array */
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> set = new HashSet<>();
+        
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        
+        int i = 0, j = 0;
+        
+        while (i < nums1.length && j < nums2.length) {
+            if (nums1[i] < nums2[j]) i++;
+            else if (nums1[i] > nums2[j]) j++;
+            else {
+                set.add(nums1[i]);
+                i++;
+                j++;
+            }
+        }
+        
+        int[] res= new int[set.size()];
+        int k = 0;
+        for (int s : set) res[k++] = s;
+        
+        return res;
+    }
+}
