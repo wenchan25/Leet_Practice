@@ -1,0 +1,19 @@
+/* Dynamic Programming */
+class Solution {
+    public int change(int amount, int[] coins) {
+        int[] combination = new int[amount + 1];
+        combination[0] = 1;
+
+        for (int coin : coins) {
+            for (int i = 1; i <= amount; i++) {
+                int diff = i - coin;
+                if (diff >= 0) {
+                    combination[i] += combination[diff];
+                }
+            }
+        }
+        return combination[amount];
+    }
+}
+
+https://www.youtube.com/watch?v=jaNZ83Q3QGc&feature=youtu.be
