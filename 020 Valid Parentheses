@@ -67,3 +67,24 @@ class Solution {
         return stack.isEmpty();
     }
 }
+
+/* another solution, preferred as of 10/07/2019 */
+class Solution {
+    public boolean isValid(String s) {
+        if (s == null || s.length() == 0) return true;
+        
+        char[] sc = s.toCharArray();
+        
+        Stack<Character> stack = new Stack<>();
+        
+        for (char c : sc) {
+            if (c == '{') stack.push('}');
+            else if (c == '[') stack.push(']');
+            else if (c == '(') stack.push(')');
+            else {
+                if (stack.isEmpty() || c != stack.pop()) return false;
+            }
+        }
+        return stack.isEmpty();
+    }
+}
