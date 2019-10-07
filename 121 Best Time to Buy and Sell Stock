@@ -1,3 +1,19 @@
+/* Solution covers negative numbers, Kadane's Algorithm */
+class Solution {
+    public int maxProfit(int[] prices) {
+        int maxCurr = 0, maxSoFar = 0;
+        
+        for (int i = 1; i < prices.length; i++) {
+            int curr = prices[i] - prices[i-1];
+            maxCurr += curr;
+            maxCurr = Math.max(0, maxCurr);// check if it's 0;
+            maxSoFar = Math.max(maxCurr, maxSoFar);
+        }
+        
+        return maxSoFar;
+    }
+}
+
 /* no need to initialize minPrice to be Integer.MAX_VALUE */
 class Solution {
     public int maxProfit(int[] prices) {
