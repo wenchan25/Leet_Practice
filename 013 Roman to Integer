@@ -26,6 +26,32 @@ public class Solution {
     }
 }
 
+/* more clear code */
+class Solution {
+    public int romanToInt(String s) {
+        if (s == null || s.length() == 0) return 0;
+        Map<Character, Integer> map = new HashMap<>();
+        map.put('I', 1);
+        map.put('V', 5);
+        map.put('X', 10);
+        map.put('L', 50);
+        map.put('C', 100);
+        map.put('D', 500);
+        map.put('M', 1000);
+
+        char[] sc = s.toCharArray();
+        int len = s.length();
+        int sum = map.get(sc[len - 1]); // initialize as the right-most value;
+        for (int i = len - 2; i >= 0; i--) {
+            int leftVal = map.get(sc[i]); // get the value
+            int rightVal = map.get(sc[i + 1]); 
+            if (leftVal < rightVal) sum -= leftVal;
+            else sum += leftVal;
+        }
+        return sum;
+    }
+}
+
 /*
 计数规则：
 相同的数字连写，所表示的数等于这些数字相加得到的数，例如：III = 3
