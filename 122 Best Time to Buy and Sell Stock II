@@ -1,0 +1,27 @@
+/* one pass, since you can buy/sell many times */
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int maxProfit = 0;
+        
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] - prices[i-1] > 0) 
+                maxProfit += prices[i] - prices[i-1];
+        }
+        return maxProfit;
+    }
+}
+
+/* Approach 3: Simple One Pass
+
+Algorithm
+
+This solution follows the logic used in Approach 2 itself, but with only a slight variation. 
+In this case, instead of looking for every peak following a valley, we can simply go on crawling over the slope and 
+keep on adding the profit obtained from every consecutive transaction. 
+
+In the end,we will be using the peaks and valleys effectively, but we need not track the costs corresponding to the peaks and valleys 
+along with the maximum profit, but we can directly keep on adding the difference between the consecutive numbers of the array 
+if the second number is larger than the first one, and at the total sum we obtain will be the maximum profit. 
+
+*/
