@@ -55,6 +55,22 @@ class Solution {
     }
 }
 
+/* this is better, no need to worry Integer.MIN_VALUE */
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int sum = nums[0]; 
+        int max = nums[0];
+        
+        for (int i = 1; i < nums.length; i++) {
+            sum = Math.max(nums[i], nums[i] + sum);
+            max = Math.max(sum, max);
+        }
+        return max;
+        
+    }
+}
+
+
 /* DP */
 
 class Solution {
